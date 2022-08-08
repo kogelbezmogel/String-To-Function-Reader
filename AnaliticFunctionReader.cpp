@@ -1,4 +1,6 @@
 #include "AnaliticFunctionReader.h"
+#include <algorithm>
+#include <functional>
 
 int AnaliticFunctionReader::MAX_FUNS = 20;
 
@@ -19,6 +21,8 @@ AnaliticFunctionReader::AnaliticFunctionReader( std::string name ) {
 void AnaliticFunctionReader::convertSchema() {
 	deleteSpaces();
 	_schema.clear();
+	_indexes_for_instruction.clear();
+	_instruction_schemas.clear();
 
 	for( int i = 0; i < _line.size(); ++i ) {
 		if( _line[i] == '(' ) {
@@ -66,6 +70,33 @@ void AnaliticFunctionReader::convertSchema() {
 			_schema.push_back( std::stof( _line.substr(i, _line.size() - i) ) );
 		}
 	}
+
+	// sorting the indexes
+	int schema_len = _schema.size();
+	int max_index;
+	std::vector<double> copy_schema = _schema ; 
+	while ( schema_len > 1 ) {
+
+		max_index = find_max_index(copy_schema);
+		
+		_indexes_for_instruction.push_back(max_index);
+		_instruction_schemas.push_back(copy_schema);
+
+		copy_schema[max_index + 1] = 0;
+		copy_schema.erase( copy_schema.begin() + max_index - 1, copy_schema.begin() + max_index + 1 );
+
+		schema_len -= 2;
+	}
+	// place for result of all schemas
+	_instruction_schemas.push_back( std::vector<double>({0}) );
+
+	for(int i = 0; i < _schema.size(); i+=2)
+		if(_schema[i] == -1 )
+			_indexes_for_x_values.push_back(i);
+}
+
+void AnaliticFunctionReader::setLine(std::string line) {
+	_line = line;
 }
 
 std::vector<double> AnaliticFunctionReader::getSchema() {
@@ -83,11 +114,24 @@ void AnaliticFunctionReader::deleteSpaces() {
 }
 
 void AnaliticFunctionReader::printSchema() {
-		std::cout << "|";
+		
+		std::cout << "\n\nSchemat glowny\n|";
 		for( auto i : _schema )
 			std::cout << i << "|";
 		std::cout << std::endl;
-}
+
+		std::cout << "\n\nStworzone schematy\n";
+		for( const auto& schema : _instruction_schemas) {
+			for( const auto& el : schema)
+				std::cout << "[" << el << "]";
+			std::cout << "\n";
+		}
+
+		std::cout << "\n\nIndeksy\n";
+		for( auto ind : _indexes_for_instruction )
+			std::cout << "[" << ind << "]";
+		std::cout << "\n";
+	}
 
 std::string AnaliticFunctionReader::getLine() {
 	return _line;
@@ -104,22 +148,32 @@ int AnaliticFunctionReader::find_max_index( std::vector<double>& line ) {
 }
 
 
-double AnaliticFunctionReader::function_value_in_point(double x) {
-
-	std::vector<double> copy = _schema;
+double AnaliticFunctionReader::function_value_in_point( const double& x ) {
 	int index;
 	double val;
 	double x1;
 	double x2;
 
-	while( copy.size() >= 3 ) {
-		index = find_max_index(copy);
-		x1 = (copy[index-1] == -1 ? x : copy[index-1]);
-		x2 = (copy[index+1] == -1 ? x : copy[index+1]);
-		val = BasicFunctions::fun_vec[ (int)copy[index] % MAX_FUNS ](x1, x2);
+	for( int index : _indexes_for_x_values ) 
+		_instruction_schemas[0][index] = x;
 
-		copy[index+1] = val;
-		copy.erase( copy.begin() + index-1, copy.begin() + index+1);
+	for( int i = 0; i < _indexes_for_instruction.size(); i++ ) {
+		index = _indexes_for_instruction[i];
+		
+		x1 = _instruction_schemas[i][index-1];
+		x2 = _instruction_schemas[i][index+1];
+		val = BasicFunctions::fun_vec[ (int)_instruction_schemas[i][index] % MAX_FUNS ](x1, x2);
+
+		// wstawienie wczesniej wyliczonych wartosci do nastepnego schematu przed indeksem 	
+		for(int k = 0; k < index - 1; k++)
+			_instruction_schemas[i+1][k] = _instruction_schemas[i][k];
+	
+		// wstawienie wyliczonej wartosci do kolejnego schematu
+		_instruction_schemas[i+1][index - 1] = val;
+
+		// wstawianie wczesniej wyliczonych wartosci do nastepnego schematu po indeksie
+		for(int k = index+2; k < _instruction_schemas[i].size(); k++)
+			_instruction_schemas[i + 1][k - 2] = _instruction_schemas[i][k];	
 	}
-	return copy[0];
+	return _instruction_schemas[ _instruction_schemas.size() - 1 ][0];
 }

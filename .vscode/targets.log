@@ -1,0 +1,309 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# Ten program jest darmowy; warunki kopiowania s� opisane w �r�d�ach.
+# Autorzy nie daj� �ADNYCH gwarancji, w tym nawet gwarancji SPRZEDAWALNO�CI
+# lub PRZYDATNO�CI DO KONKRETNYCH CEL�W.
+
+# Ten program zosta� zbudowany dla i386-pc-mingw32
+ 
+
+# Baza danych Make, wy�wietlana na Mon Aug 08 16:56:44 2022
+
+# Zmienne
+
+# automatyczna
+<D = $(patsubst %/,%,$(dir $<))
+# automatyczna
+?F = $(notdir $?)
+# makefile
+MAKEFLAGS = Rrqp
+# automatyczna
+?D = $(patsubst %/,%,$(dir $?))
+# automatyczna
+@D = $(patsubst %/,%,$(dir $@))
+# �rodowiskowa
+HOMEDRIVE = C:
+# automatyczna
+@F = $(notdir $@)
+# automatyczna
+^D = $(patsubst %/,%,$(dir $^))
+# makefile
+CURDIR := c:/Users/Administrator/Desktop/GitHub projects/String-To-Function-Reader
+# domy�lna
+SHELL := sh.exe
+# �rodowiskowa
+WINDIR = C:\Windows
+# �rodowiskowa
+VSCODE_NLS_CONFIG = {"locale":"pl","availableLanguages":{},"_languagePackSupport":true}
+# �rodowiskowa
+ONEDRIVE = C:\Users\Administrator\OneDrive
+# �rodowiskowa
+GNUPLOT_LIB = C:\Program Files\gnuplot\demo;C:\Program Files\gnuplot\demo\games;C:\Program Files\gnuplot\share
+# �rodowiskowa
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+# makefile (z `makefile', linia 1)
+MAKEFILE_LIST :=  makefile
+# �rodowiskowa
+FPS_BROWSER_USER_PROFILE_STRING = Default
+# �rodowiskowa
+TMP = C:\Users\ADMINI~1\AppData\Local\Temp
+# �rodowiskowa
+PROGRAMW6432 = C:\Program Files
+# �rodowiskowa
+PROGRAMDATA = C:\ProgramData
+# �rodowiskowa
+VSCODE_CWD = C:\Users\Administrator\AppData\Local\Programs\Microsoft VS Code
+# �rodowiskowa
+PATH = C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\MinGW\bin;C:\Program Files\Java\jdk-17.0.1\bin;C:\Program Files\nodejs\;C:\Users\Administrator\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\Administrator\AppData\Local\Programs\Python\Python39\;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Users\Administrator\.dotnet\tools;C:\Users\Administrator\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\Coursier\cache\arc\https\github.com\AdoptOpenJDK\openjdk8-binaries\releases\download\jdk8u292-b10\OpenJDK8U-jdk_x64_windows_hotspot_8u292b10.zip\jdk8u292-b10\bin;C:\Users\Administrator\AppData\Local\Coursier\data\bin;C:\Users\Administrator\AppData\Local\GitHubDesktop\bin;C:\Program Files\Azure Data Studio\bin;C:\Program Files (x86)\GnuWin32\bin;
+# �rodowiskowa
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# �rodowiskowa
+PROCESSOR_ARCHITECTURE = x86
+# �rodowiskowa
+USERPROFILE = C:\Users\Administrator
+# �rodowiskowa
+ALLUSERSPROFILE = C:\ProgramData
+# �rodowiskowa
+NUMBER_OF_PROCESSORS = 4
+# �rodowiskowa
+ELECTRON_RUN_AS_NODE = 1
+# domy�lna
+.FEATURES := target-specific order-only second-expansion else-if archives
+# automatyczna
+%F = $(notdir $%)
+# �rodowiskowa
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_13912_NKNDLOVLBFBCLAZP
+# �rodowiskowa
+COMPUTERNAME = DESKTOP-4RR94KH
+# �rodowiskowa
+PROGRAMFILES = C:\Program Files (x86)
+# �rodowiskowa
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# �rodowiskowa
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# �rodowiskowa
+USERNAME = Administrator
+# �rodowiskowa
+PUBLIC = C:\Users\Public
+# �rodowiskowa
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# �rodowiskowa
+VSCODE_CODE_CACHE_PATH = C:\Users\Administrator\AppData\Roaming\Code\CachedData\da76f93349a72022ca4670c1b84860304616aaa2
+# �rodowiskowa
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# �rodowiskowa
+COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
+# �rodowiskowa
+LOGONSERVER = \\DESKTOP-4RR94KH
+# �rodowiskowa
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# �rodowiskowa
+USERDOMAIN = DESKTOP-4RR94KH
+# domy�lna
+MAKE = $(MAKE_COMMAND)
+# domy�lna
+MAKECMDGOALS := all
+# �rodowiskowa
+JAVA_HOME = C:\Users\Administrator\AppData\Local\Coursier\cache\arc\https\github.com\AdoptOpenJDK\openjdk8-binaries\releases\download\jdk8u292-b10\OpenJDK8U-jdk_x64_windows_hotspot_8u292b10.zip\jdk8u292-b10
+# domy�lna
+MAKE_VERSION := 3.81
+# makefile
+.DEFAULT_GOAL := all
+# �rodowiskowa
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# automatyczna
+%D = $(patsubst %/,%,$(dir $%))
+# �rodowiskowa
+LOCALAPPDATA = C:\Users\Administrator\AppData\Local
+# �rodowiskowa
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+# domy�lna
+MAKE_COMMAND := make.exe
+# �rodowiskowa
+PROCESSOR_ARCHITEW6432 = AMD64
+# domy�lna
+.VARIABLES := 
+# automatyczna
+*F = $(notdir $*)
+# �rodowiskowa
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 60 Stepping 3, GenuineIntel
+# �rodowiskowa
+OS = Windows_NT
+# �rodowiskowa
+VSCODE_IPC_HOOK = \\.\pipe\9e7283c68e6159fd1e9872b65f264be5-1.70.0-main-sock
+# �rodowiskowa
+HOMEPATH = \Users\Administrator
+# �rodowiskowa
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# �rodowiskowa
+PROMPT = $P$G
+# �rodowiskowa
+MFLAGS = -Rrqp
+# automatyczna
+*D = $(patsubst %/,%,$(dir $*))
+# �rodowiskowa
+SYSTEMROOT = C:\Windows
+# automatyczna
++D = $(patsubst %/,%,$(dir $+))
+# automatyczna
++F = $(notdir $+)
+# �rodowiskowa
+APPDATA = C:\Users\Administrator\AppData\Roaming
+# �rodowiskowa
+TEMP = C:\Users\ADMINI~1\AppData\Local\Temp
+# �rodowiskowa
+COMSPEC = C:\Windows\system32\cmd.exe
+# domy�lna
+MAKEFILES := 
+# automatyczna
+<F = $(notdir $<)
+# �rodowiskowa
+LC_ALL = C
+# automatyczna
+^F = $(notdir $^)
+# domy�lna
+SUFFIXES := 
+# �rodowiskowa
+SYSTEMDRIVE = C:
+# �rodowiskowa
+SESSIONNAME = Console
+# �rodowiskowa
+PROCESSOR_REVISION = 3c03
+# �rodowiskowa
+MAKELEVEL := 0
+# �rodowiskowa
+LANG = C
+# �rodowiskowa
+PROCESSOR_LEVEL = 6
+# �rodowiskowa
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+# �rodowiskowa
+VSCODE_PID = 13912
+# �rodowiskowa
+USERDOMAIN_ROAMINGPROFILE = DESKTOP-4RR94KH
+# statystyki tablic haszuj�cych ustawionych zmiennych:
+# Wype�nienie=85/1024=8%, Przehaszowania=0, Kolizje=9/107=8%
+
+# Warto�ci zmiennych dla wzorca
+
+# Brak warto�ci zmiennych dla wzorca.
+
+# Katalogi
+
+# C:\Program Files\Common Files\Oracle\Java\javapath (klucz C:/Program Files/Common Files/Oracle/Java/javapath, czas modyfikacji 1636364556): 6 pliki, nie niemo�liwo�ci.
+# C:\Program Files\Java\jdk-17.0.1\bin (klucz C:/Program Files/Java/jdk-17.0.1/bin, czas modyfikacji 1636364541): 123 pliki, nie niemo�liwo�ci.
+# C:\Users\Administrator\AppData\Local\Programs\Python\Python39\ (klucz C:/Users/Administrator/AppData/Local/Programs/Python/Python39/, czas modyfikacji 1642894903): 19 pliki, nie niemo�liwo�ci.
+# C:\Users\Administrator\AppData\Local\GitHubDesktop\bin (klucz C:/Users/Administrator/AppData/Local/GitHubDesktop/bin, czas modyfikacji 1642183924): 4 pliki, nie niemo�liwo�ci.
+# C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps (klucz C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps, czas modyfikacji 1659199606): 22 pliki, nie niemo�liwo�ci.
+# C:\Users\Administrator\AppData\Local\Programs\Python\Python39\Scripts\ (klucz C:/Users/Administrator/AppData/Local/Programs/Python/Python39/Scripts/, czas modyfikacji 1643983102): 12 pliki, nie niemo�liwo�ci.
+# C:\Windows\System32\WindowsPowerShell\v1.0\ (klucz C:/Windows/System32/WindowsPowerShell/v1.0/, czas modyfikacji 1553001866): 30 pliki, nie niemo�liwo�ci.
+# C:\Windows\System32\Wbem (klucz C:/Windows/System32/Wbem, czas modyfikacji 1621235600): 171 pliki, nie niemo�liwo�ci.
+# . (klucz c:/Users/Administrator/Desktop/GitHub projects/String-To-Function-Reader, czas modyfikacji 1659970005): 17 pliki, nie niemo�liwo�ci.
+# C:\Program Files\nodejs\ (klucz C:/Program Files/nodejs/, czas modyfikacji 1644269577): 13 pliki, nie niemo�liwo�ci.
+# C:\Program Files\dotnet\ (klucz C:/Program Files/dotnet/, czas modyfikacji 1616110516): 9 pliki, nie niemo�liwo�ci.
+# C:\MinGW\bin (klucz C:/MinGW/bin, czas modyfikacji 1635774087): 55 pliki, nie niemo�liwo�ci.
+# C: stat() zwraca b��d.
+# C:\Windows\System32\OpenSSH\: stat() zwraca b��d.
+# C:\Program Files (x86)\Common Files\Oracle\Java\javapath (klucz C:/Program Files (x86)/Common Files/Oracle/Java/javapath, czas modyfikacji 1642528326): 5 pliki, nie niemo�liwo�ci.
+# C:\Users\Administrator\AppData\Local\Coursier\data\bin (klucz C:/Users/Administrator/AppData/Local/Coursier/data/bin, czas modyfikacji 1647200297): 11 pliki, nie niemo�liwo�ci.
+# C:\Windows (klucz C:/Windows, czas modyfikacji 1657046214): 121 pliki, nie niemo�liwo�ci.
+# C:\Users\Administrator\AppData\Local\Coursier\cache\arc\https\github.com\AdoptOpenJDK\openjdk8-binaries\releases\download\jdk8u292-b10\OpenJDK8U-jdk_x64_windows_hotspot_8u292b10.zip\jdk8u292-b10\bin (klucz C:/Users/Administrator/AppData/Local/Coursier/cache/arc/https/github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u292-b10/OpenJDK8U-jdk_x64_windows_hotspot_8u292b10.zip/jdk8u292-b10/bin, czas modyfikacji 1647200109): 53 pliki, nie niemo�liwo�ci.
+# C:\Program Files\Azure Data Studio\bin: stat() zwraca b��d.
+# C:\Users\Administrator\AppData\Local\Programs\Microsoft VS Code\bin (klucz C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin, czas modyfikacji 1659740537): 4 pliki, nie niemo�liwo�ci.
+# C:\Program Files\Git\cmd (klucz C:/Program Files/Git/cmd, czas modyfikacji 1622736747): 8 pliki, nie niemo�liwo�ci.
+# C:\Windows\system32 (klucz C:/Windows/system32, czas modyfikacji 1659882072): 3039 pliki, nie niemo�liwo�ci.
+# C:\Users\Administrator\AppData\Roaming\npm (klucz C:/Users/Administrator/AppData/Roaming/npm, czas modyfikacji 1652091609): 9 pliki, nie niemo�liwo�ci.
+# C:\Users\Administrator\.dotnet\tools: stat() zwraca b��d.
+# C:\Program Files (x86)\GnuWin32\bin (klucz C:/Program Files (x86)/GnuWin32/bin, czas modyfikacji 1657316818): 5 pliki, nie niemo�liwo�ci.
+
+# 3736 pliki, nie niemo�liwo�ci w 25 katalogach.
+
+# Regu�y stadardowe
+
+# Brak standardowych regu�.
+
+# Pliki
+
+link:
+#  Szukanie regu� domy�lnych nie zosta�o wykonane.
+#  Czas modyfikacji nie by� sprawdzany.
+#  Plik nie zosta� uaktualniony.
+#  polecenia do wykonania (z `makefile', linia 7):
+	g++ -std=c++17 main.o AnaliticFunctionReader.o BasicFunctions.o -o main
+	
+
+all: compile link
+#  Obiekt podany w linii polece�.
+#  Szukanie regu� domy�lnych zosta�o wykonane.
+#  Plik nie istnieje.
+#  Plik zosta� uaktualniony.
+#  Powinien by� uaktualniony (-q jest w��czone).
+# statystyki tablic haszuj�cych ustawionych zmiennych:
+# Wype�nienie=0/32=0%, Przehaszowania=0, Kolizje=0/2=0%
+
+# To nie jest obiekt:
+.DEFAULT:
+#  Szukanie regu� domy�lnych nie zosta�o wykonane.
+#  Czas modyfikacji nie by� sprawdzany.
+#  Plik nie zosta� uaktualniony.
+
+# To nie jest obiekt:
+makefile:
+#  Szukanie regu� domy�lnych zosta�o wykonane.
+#  Ostatnio modyfikowany 2022-08-07 19:00:43
+#  Plik zosta� uaktualniony.
+#  Uaktualnienie powiod�o si�.
+# statystyki tablic haszuj�cych ustawionych zmiennych:
+# Wype�nienie=0/32=0%, Przehaszowania=0, Kolizje=0/0=0%
+
+# To nie jest obiekt:
+.SUFFIXES:
+#  Szukanie regu� domy�lnych nie zosta�o wykonane.
+#  Czas modyfikacji nie by� sprawdzany.
+#  Plik nie zosta� uaktualniony.
+
+compile:
+#  Szukanie regu� domy�lnych nie zosta�o wykonane.
+#  Ga��� wzorc�w domy�lnych/statycznych: `'
+#  Plik nie istnieje.
+#  Plik zosta� uaktualniony.
+#  Powinien by� uaktualniony (-q jest w��czone).
+# automatyczna
+# @ := compile
+# automatyczna
+# % := 
+# automatyczna
+# * := 
+# automatyczna
+# + := 
+# automatyczna
+# | := 
+# automatyczna
+# < := 
+# automatyczna
+# ^ := 
+# automatyczna
+# ? := 
+# statystyki tablic haszuj�cych ustawionych zmiennych:
+# Wype�nienie=8/32=25%, Przehaszowania=0, Kolizje=1/10=10%
+#  polecenia do wykonania (z `makefile', linia 4):
+	g++ -std=c++17 -c main.cpp AnaliticFunctionReader.cpp BasicFunctions.cpp
+	
+
+# statystyki tablic haszuj�cych plik�w:
+# Wype�nienie=6/1024=1%, Przehaszowania=0, Kolizje=0/21=0%
+# �cie�ki przeszukiwania VPATH
+
+# Brak �cie�ek przeszukiwania `vpath'
+
+# Brak og�lnej (zmienna `VPATH') �cie�ki przeszukiwania.
+
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
+
+# Zako�czono tworzenie bazy danych Make na Mon Aug 08 16:56:44 2022
+
+ 

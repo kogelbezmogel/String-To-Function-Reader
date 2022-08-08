@@ -1,0 +1,2 @@
+1) (100 tests) Average time: 26990.7 milliseconds
+2) (100 tests) Average time: 16582.5 milliseconds

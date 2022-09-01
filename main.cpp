@@ -6,23 +6,20 @@ int main() {
 
 	//correctness_test();
 	//time_test_fastest();
-	time_test();
-	/*
+	//test_functions_from_file( "test_fun.txt" );
+
+	
 	AnaliticFunctionReader f_reader;
-	f_reader.setLine("(x-2) * (x+5) - x^x / x");
-	f_reader.setLine("x^2");
+	std::function< double(double) > fun = []( double x ) { return x; };
+	double arg = 1;
+
+	f_reader.setLine("x");
 	f_reader.convertSchema();
-	f_reader.printSchema();
-	std::cout << "f() = " << f_reader.function_value_in_point(3) << "\n";
-
-	f_reader.setLine("(x-2) * (x+5) - x^x / x");
-	f_reader.convertSchema();	
-	f_reader.printSchema();
-	std::cout << "f() = " << f_reader.function_value_in_point(3) << "\n";
-	*/
-
+	std::cout << "\n\n\n" << f_reader.getLine() << "\n";
+	f_reader.printAllSchemas();
+	std::cout << "fun(" << arg << ") = " << fun(arg) << " != " << f_reader.function_value_in_point(arg) << "\n";
+	
 	std::cout << "Koniec\n";
-
 	return 0;
 }
 

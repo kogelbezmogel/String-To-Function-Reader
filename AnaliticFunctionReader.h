@@ -16,6 +16,7 @@ public:
 
 	void convertSchema( );
 	void printSchema( );
+	void printAllSchemas( );
 	void deleteSpaces( );
 	std::string getLine( );
 	void setLine( std::string line );

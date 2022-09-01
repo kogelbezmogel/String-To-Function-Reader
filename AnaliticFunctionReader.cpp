@@ -4,10 +4,29 @@
 
 int AnaliticFunctionReader::MAX_FUNS = 20;
 
+
+int number_length_in_str(std::string line) {
+  int len = 0;
+  bool num_passed = false;
+  bool dot_passed = false;
+  bool exp_notation = false;
+
+  for (const char &c : line) {
+    if (std::isdigit(c)) { num_passed = true; ++len; }
+	else if (c == '.' && !dot_passed) { dot_passed = true; ++len; }
+	else if (c == 'e' && num_passed && !exp_notation) { exp_notation = true; ++len; }
+	else if (c == '-' && exp_notation) { ++len; }
+	else { break; }
+  }
+  return len;
+}
+
+
 AnaliticFunctionReader::AnaliticFunctionReader() {
 	_empty = true;
 	BasicFunctions::Initialize();
 }
+
 
 AnaliticFunctionReader::AnaliticFunctionReader( std::string name ) {
 	
@@ -18,10 +37,12 @@ AnaliticFunctionReader::AnaliticFunctionReader( std::string name ) {
 	convertSchema();
 }
 
+
 void AnaliticFunctionReader::convertSchema() {
 	deleteSpaces();
 	_schema.clear();
 	_indexes_for_instruction.clear();
+	_indexes_for_x_values.clear();
 	_instruction_schemas.clear();
 
 	for( int i = 0; i < _line.size(); ++i ) {
@@ -67,7 +88,13 @@ void AnaliticFunctionReader::convertSchema() {
 			_schema.push_back(-1);
 		}
 		else {
-			_schema.push_back( std::stof( _line.substr(i, _line.size() - i) ) );
+			int length = number_length_in_str( _line.substr(i, _line.size() ) );
+			std::cout << "Len: " << length << "\n";
+			double num = std::stof( _line.substr(i, _line.size()) );
+			std::cout << "Substr: " << _line.substr(i, _line.size()) << "\n";
+			//double num = 100;
+			_schema.push_back( num );
+			i = i + length - 1; // moving pointer reagard to length of numer
 		}
 	}
 
@@ -88,20 +115,26 @@ void AnaliticFunctionReader::convertSchema() {
 		schema_len -= 2;
 	}
 	// place for result of all schemas
-	_instruction_schemas.push_back( std::vector<double>({0}) );
+	if( _schema.size() > 1 )
+		_instruction_schemas.push_back( std::vector<double>({0}) );
+	else if( _schema.size() == 1 ) // it is const function or linear
+		_instruction_schemas.push_back( { _schema[0] } );
 
 	for(int i = 0; i < _schema.size(); i+=2)
 		if(_schema[i] == -1 )
 			_indexes_for_x_values.push_back(i);
 }
 
+
 void AnaliticFunctionReader::setLine(std::string line) {
 	_line = line;
 }
 
+
 std::vector<double> AnaliticFunctionReader::getSchema() {
 	return _schema;
 }
+
 
 void AnaliticFunctionReader::deleteSpaces() {
 
@@ -113,29 +146,39 @@ void AnaliticFunctionReader::deleteSpaces() {
 	_line = new_line;
 }
 
+
 void AnaliticFunctionReader::printSchema() {
-		
-		std::cout << "\n\nSchemat glowny\n|";
-		for( auto i : _schema )
-			std::cout << i << "|";
-		std::cout << std::endl;
+	std::cout << "---------MAIN SCHEMA---------\n";
+	for( auto i : _schema )
+		std::cout << "[" << i << "]";
+	std::cout << "\n---------    ---------\n";
+}
 
-		std::cout << "\n\nStworzone schematy\n";
-		for( const auto& schema : _instruction_schemas) {
-			for( const auto& el : schema)
-				std::cout << "[" << el << "]";
-			std::cout << "\n";
-		}
 
-		std::cout << "\n\nIndeksy\n";
-		for( auto ind : _indexes_for_instruction )
-			std::cout << "[" << ind << "]";
+void AnaliticFunctionReader::printAllSchemas() {
+
+	printSchema();
+
+	std::cout << "\n\n----------ADDITIONAL SCHEMAS----------\n";
+	for( const auto& schema : _instruction_schemas) {
+		for( const auto& el : schema)
+			std::cout << "[" << el << "]";
 		std::cout << "\n";
 	}
+	std::cout << "-----------    -----------\n\n";
+
+	std::cout << "\n-----------INDEXES-----------\n";
+	for( auto ind : _indexes_for_instruction )
+		std::cout << "[" << ind << "]";
+	std::cout << "\n-----------    -----------\n\n";
+
+}
+
 
 std::string AnaliticFunctionReader::getLine() {
 	return _line;
 }
+
 
 int AnaliticFunctionReader::find_max_index( std::vector<double>& line ) {
 	int max = line.size() - 2;

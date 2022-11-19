@@ -58,6 +58,14 @@
         "memory_resource": "cpp",
         "numeric": "cpp",
         "random": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "bit": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "string_view": "cpp",
+        "numbers": "cpp",
+        "semaphore": "cpp",
+        "stop_token": "cpp",
+        "thread": "cpp"
     }
 }

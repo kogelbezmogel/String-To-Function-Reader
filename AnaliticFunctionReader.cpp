@@ -1,6 +1,8 @@
 #include "AnaliticFunctionReader.h"
 #include <algorithm>
 #include <functional>
+#include <thread>
+#include <mutex>
 
 int AnaliticFunctionReader::MAX_FUNS = 20;
 
@@ -191,7 +193,7 @@ int AnaliticFunctionReader::find_max_index( std::vector<double>& line ) {
 }
 
 
-double AnaliticFunctionReader::function_value_in_point( const double& x ) {
+double AnaliticFunctionReader::operator() ( const double& x ) {
 	int index;
 	double val;
 	double x1;
@@ -219,4 +221,96 @@ double AnaliticFunctionReader::function_value_in_point( const double& x ) {
 			_instruction_schemas[i + 1][k - 2] = _instruction_schemas[i][k];	
 	}
 	return _instruction_schemas[ _instruction_schemas.size() - 1 ][0];
+}
+
+
+// operator() for pararell excecution
+double AnaliticFunctionReader::operator() (const double& x, std::vector<std::vector<double>>& instruction_schemas, std::vector<int>& indexes_for_instruction, std::vector<int>& indexes_for_x_values) {
+	int index;
+	double val;
+	double x1;
+	double x2;
+
+	for( int index : indexes_for_x_values ) 
+		instruction_schemas[0][index] = x;
+
+	for( int i = 0; i < indexes_for_instruction.size(); i++ ) {
+		index = indexes_for_instruction[i];
+		
+		x1 = instruction_schemas[i][index-1];
+		x2 = instruction_schemas[i][index+1];
+		val = BasicFunctions::fun_vec[ (int)instruction_schemas[i][index] % MAX_FUNS ](x1, x2);
+
+		// wstawienie wczesniej wyliczonych wartosci do nastepnego schematu przed indeksem 	
+		for(int k = 0; k < index - 1; k++)
+			instruction_schemas[i+1][k] = instruction_schemas[i][k];
+	
+		// wstawienie wyliczonej wartosci do kolejnego schematu
+		instruction_schemas[i+1][index - 1] = val;
+
+		// wstawianie wczesniej wyliczonych wartosci do nastepnego schematu po indeksie
+		for(int k = index+2; k < instruction_schemas[i].size(); k++)
+			instruction_schemas[i + 1][k - 2] = instruction_schemas[i][k];	
+	}
+	return instruction_schemas[ instruction_schemas.size() - 1 ][0];
+}
+
+
+void AnaliticFunctionReader::function_args_to_results (std::vector<double>::iterator start, const std::vector<double>::iterator end) {
+	//creating a copy of schemas for a thread
+	std::vector<std::vector<double>> instruction_schemas = _instruction_schemas;
+	std::vector<int> indexes_for_instruction = _indexes_for_instruction;
+	std::vector<int> indexes_for_x_values = _indexes_for_x_values;
+
+	while ( start < end ) {
+		(*start) = this->operator() (*start, instruction_schemas, indexes_for_instruction, indexes_for_x_values);
+		++start;
+	}
+}
+
+
+std::vector<double> AnaliticFunctionReader::operator() (std::vector<double>& args) {
+
+	std::vector<Slice> data_slices;
+	std::vector<double> results(args);
+	std::vector<double> results_one_thread(args);
+	std::vector<std::thread> threads;
+	const uint16_t num_threads = std::max( (int) std::thread::hardware_concurrency() - 1, 1 );
+	int batch_size = std::ceil( (double) args.size() / num_threads );
+
+	auto start = std::chrono::high_resolution_clock::now();
+	function_args_to_results(results_one_thread.begin(), results_one_thread.end() );
+	auto end = std::chrono::high_resolution_clock::now();
+	std::cout << "single thread exec time: " << std::chrono::duration<double>(end - start).count() << "\n";
+	
+	
+	std::cout << "I have available " << num_threads << " threads\n";
+	std::cout << "Batch size: " << batch_size << "\n";
+
+	start = std::chrono::high_resolution_clock::now();
+
+	// creating slices of args for threads
+	int a;
+	int b;
+	for( int i = 0; i < num_threads; i++ ) {
+		a = i*batch_size;
+		b = std::min( (i+1)*batch_size, (int) args.size() );
+		data_slices.push_back( Slice(results.begin() + a, results.begin() + b) );
+	}
+
+	for( Slice& slice : data_slices )
+		threads.emplace_back( AnaliticFunctionReader::function_args_to_results, this, slice.first, slice.second );
+
+	for( auto& t : threads )
+		t.join();
+
+	end = std::chrono::high_resolution_clock::now();
+	std::cout << "pararell exec time: " << std::chrono::duration<double>(end - start).count() << "\n";
+
+	// printing wrong answers becouse of thread overwritting
+	for(int j = 0; j < results_one_thread.size(); j++) 
+		if( results_one_thread[j] != results[j] )
+			std::cout << "! Error " << results_one_thread[j] << " != " << results[j] << std::endl;
+
+	return results;
 }
